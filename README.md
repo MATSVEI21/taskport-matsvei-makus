@@ -1,34 +1,37 @@
-# TaskBoard
+﻿# Taskboard
 
-<!-- To jest szkielet README. W zadaniu TB-1 uzupełnij każdą sekcję i usuń te komentarze. -->
+## Opis aplikacji
 
-Krótki opis aplikacji (2–3 zdania): czym jest TaskBoard i co można w nim zrobić.
+Taskboard to aplikacja do zarządzania zadaniami.
+Umożliwia organizowanie pracy, tworzenie zadań
+oraz śledzenie postępów ich realizacji.
 
 ## Technologie
 
-<!-- Wypisz technologie użyte w projekcie (frontend, backend, baza danych, narzędzia). -->
+- Git i GitHub – kontrola wersji i współpraca.
+- Markdown – dokumentacja projektu.
+- Frontend – interfejs użytkownika.
+- Backend – logika aplikacji.
+- Database – przechowywanie danych.
 
-## Wymagane środowisko
+## Struktura folderów
 
-<!-- Narzędzia i ich wersje potrzebne do uruchomienia projektu. -->
+| Folder | Opis |
+|---|---|
+| frontend/ | Interfejs użytkownika |
+| backend/ | Logika aplikacji i API |
+| database/ | Struktura bazy danych |
+| docs/ | Dokumentacja projektu |
+| docs/zadania/ | Dokumentacja zadań |
 
 ## Uruchomienie
 
-<!-- Instrukcja krok po kroku. Na razie szkic – rozbudujesz ją w kolejnych tygodniach. -->
-
-## Struktura projektu
-
-| Folder | Za co odpowiada |
-| --- | --- |
-| `frontend/` | |
-| `backend/` | |
-| `database/` | |
-| `docs/` | |
-
-## Materiały
-
-Pliki potrzebne podczas praktyk są w folderze [materialy](materialy/README.md).
+1. Sklonuj repozytorium:
+   `git clone <adres-repozytorium>`
+2. Otwórz folder projektu w VS Code.
+3. Zainstaluj wymagane zależności po skonfigurowaniu projektu.
+4. Uruchom aplikację zgodnie z instrukcją odpowiedniego modułu.
 
 ## Autor
 
-Imię i nazwisko, klasa.
+Matsvei Makus
