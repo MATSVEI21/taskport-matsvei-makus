@@ -75,4 +75,5 @@ erDiagram
     Uzytkownik ||--o{ Tablica : "owns"
     Tablica ||--o{ Zadanie : "contains"
     Uzytkownik ||--o{ Zadanie : "assigned to"
+
 ```
