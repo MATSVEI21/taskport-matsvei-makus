@@ -77,4 +77,3 @@ erDiagram
     Uzytkownik ||--o{ Zadanie : "assigned to"
 
 ```
-

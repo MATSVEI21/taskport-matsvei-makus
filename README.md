@@ -17,7 +17,7 @@ oraz śledzenie postępów ich realizacji.
 ## Struktura folderów
 
 | Folder | Opis |
-|---|---|
+| --- | --- |
 | frontend/ | Interfejs użytkownika |
 | backend/ | Logika aplikacji i API |
 | database/ | Struktura bazy danych |

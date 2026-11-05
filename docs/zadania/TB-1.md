@@ -79,6 +79,7 @@ W przypadku czerwonego workflow otwórz zakładkę Actions w repozytorium. Komun
 ## Termin
 
 Zadanie należy zakończyć do piątku do godziny 18:00.
+
 ## TB-1 część 2 – opis danych
 
 Pełny opis danych aplikacji (użytkownik, tablica, zadanie) wraz z powiązaniami,
