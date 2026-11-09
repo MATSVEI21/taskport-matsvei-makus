@@ -1,0 +1,42 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 252198a..e3b4b96 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -3,8 +3,7 @@[m
+ ## Opis aplikacji[m
+ [m
+ Taskboard to aplikacja do zarządzania zadaniami.[m
+[31m-Umożliwia organizowanie pracy, tworzenie zadań[m
+[31m-oraz śledzenie postępów ich realizacji.[m
+[32m+[m[32mUmożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich realizacji.[m
+ [m
+ ## Technologie[m
+ [m
+[36m@@ -16,18 +15,17 @@[m [moraz śledzenie postępów ich realizacji.[m
+ [m
+ ## Struktura folderów[m
+ [m
+[31m-| Folder        | Opis                       |[m
+[31m-| ------------- | -------------------------- |[m
+[31m-| frontend/     | Interfejs użytkownika      |[m
+[31m-| backend/      | Logika aplikacji i API     |[m
+[31m-| database/     | Struktura bazy danych      |[m
+[31m-| docs/         | Dokumentacja projektu      |[m
+[31m-| docs/zadania/ | Dokumentacja zadań         |[m
+[32m+[m[32m| Folder | Opis |[m
+[32m+[m[32m| --- | --- |[m
+[32m+[m[32m| frontend/ | Interfejs użytkownika |[m
+[32m+[m[32m| backend/ | Logika aplikacji i API |[m
+[32m+[m[32m| database/ | Struktura bazy danych |[m
+[32m+[m[32m| docs/ | Dokumentacja projektu |[m
+[32m+[m[32m| docs/zadania/ | Dokumentacja zadań |[m
+ [m
+ ## Uruchomienie[m
+ [m
+[31m-1. Sklonuj repozytorium:[m
+[31m-   `git clone <adres-repozytorium>`[m
+[32m+[m[32m1. Sklonuj repozytorium: `git clone <adres-repozytorium>`[m
+ 2. Otwórz folder projektu w VS Code.[m
+ 3. Zainstaluj wymagane zależności po skonfigurowaniu projektu.[m
+ 4. Uruchom aplikację zgodnie z instrukcją odpowiedniego modułu.[m
