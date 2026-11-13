@@ -71,7 +71,7 @@ INSERT INTO tasks (title, description, status, priority, deadline, boardId, assi
   ('API tablic',             'POST, PUT i DELETE dla tablic',  'in_progress', 'high',   '2026-11-14', 1, 2),
   ('API zadań',              'Trasy w pliku routes/tasks.js',  'in_progress', 'medium', '2026-11-14', 1, 2),
   ('Widok tablicy',          'Trzy kolumny ze statusami',      'todo',        'medium', '2026-11-20', 1, 3),
-  ('Raport testów',          NULL,                             'todo',        'low',    NULL,         1, NULL),
+  ('Raport testów',          NULL,                             'todo',        'low',    '2026-11-05', 1, NULL),
   ('Hello world Express',    'Pierwszy serwer na porcie 3000', 'done',        'low',    '2026-11-09', 2, 4),
   ('Kolekcja Postman',       'Przypadki 200, 400 i 404',       'todo',        'high',   '2026-11-13', 2, 5),
   ('Stary pomysł na filtry', 'Zrezygnowano z tej funkcji',     'todo',        'low',    NULL,         1, 3),
