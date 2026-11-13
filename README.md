@@ -19,10 +19,9 @@ Umożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich 
 - **Mermaid** – diagramy ERD osadzone w dokumentacji i renderowane przez GitHub.
 - **Frontend** – warstwa interfejsu użytkownika (tablice, zadania, filtry);
   konkretna technologia zostanie wybrana w kolejnych zadaniach.
-- **Backend** – logika aplikacji i API dla użytkowników, tablic i zadań;
-  konkretna technologia zostanie wybrana w kolejnych zadaniach.
-- **Baza danych (SQL)** – relacyjne przechowywanie danych (użytkownik, tablica,
-  zadanie) zgodnie z modelem z `docs/dane.md`.
+- **Node.js i Express** – środowisko i framework backendu; REST API dla użytkowników, tablic i zadań (`backend/`).
+- **MySQL (XAMPP, MariaDB)** – relacyjna baza danych `taskboard` z tabelami `users`, `boards` i `tasks`; sterownik `mysql2`.
+- **Postman** – ręczne testowanie tras API; kolekcja w `docs/postman/`.
 
 ## Struktura folderów
 
@@ -34,12 +33,75 @@ Umożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich 
 | docs/ | Dokumentacja projektu |
 | docs/zadania/ | Dokumentacja zadań |
 
+## Baza danych
+
+Baza `taskboard` (MySQL) jest zgodna z diagramem ERD z `materialy/erd.md`.
+
+### Tabele
+
+| Tabela | Opis |
+| --- | --- |
+| users | Użytkownicy: login (unikalny, 3–30 znaków), hash hasła, imię i nazwisko |
+| boards | Tablice: nazwa (1–80 znaków), opis, właściciel (`ownerId`) |
+| tasks | Zadania: tytuł (3–100 znaków), opis, `status`, `priority`, termin, tablica, osoba |
+
+### Relacje
+
+- Użytkownik może mieć wiele tablic (`boards.ownerId` → `users.id`).
+- Tablica zawiera wiele zadań (`tasks.boardId` → `boards.id`); zadanie należy do dokładnie jednej tablicy.
+- Zadanie może mieć przypisaną osobę (`tasks.assigneeId` → `users.id`, pole opcjonalne).
+- Osoba, która usunęła rekord, jest zapisana w `deletedById` (→ `users.id`).
+- Dozwolone wartości: `status` – `todo`, `in_progress`, `done`; `priority` – `low`, `medium`, `high`.
+
+### Soft delete
+
+Tabele `boards` i `tasks` nie usuwają rekordów od razu. Usunięcie ustawia naraz `isDeleted = 1`, `deletedAt` i `deletedById`, a aplikacja pokazuje tylko rekordy z `isDeleted = 0`. Trwałe usunięcie (po 30 dniach) wykonuje administrator zapytaniem z `database/queries.sql`.
+
+### Jak odtworzyć bazę
+
+1. Uruchom MySQL w XAMPP.
+2. Z głównego folderu projektu wykonaj skrypt, który usuwa i tworzy bazę od zera razem z danymi testowymi:
+   `mysql -u root < database/taskboard.sql`
+   (albo w phpMyAdmin: zakładka Import, plik `database/taskboard.sql`).
+3. Zapytania do ćwiczeń znajdują się w `database/queries.sql`.
+
+### Kopia zapasowa
+
+Kopia `database/backup/taskboard_backup.sql` powstała poleceniem
+`mysqldump -u root --no-create-db taskboard`. Odtworzenie w bazie `taskboard_test`
+i porównanie liczby rekordów:
+
+| Tabela | taskboard | taskboard_test |
+| --- | --- | --- |
+| users | 5 | 5 |
+| boards | 2 | 2 |
+| tasks | 10 | 10 |
+| tasks z isDeleted = 1 | 2 | 2 |
+
+Liczby są takie same, więc kopia zapasowa odtwarza bazę poprawnie.
+
 ## Uruchomienie
 
-1. Sklonuj repozytorium: `git clone <adres-repozytorium>`
-2. Otwórz folder projektu w VS Code.
-3. Zainstaluj wymagane zależności po skonfigurowaniu projektu.
-4. Uruchom aplikację zgodnie z instrukcją odpowiedniego modułu.
+1. Sklonuj repozytorium: `git clone <adres-repozytorium>` i otwórz folder w VS Code.
+2. Uruchom MySQL w XAMPP i odtwórz bazę (sekcja „Baza danych”).
+3. W głównym folderze projektu utwórz plik `.env` (nie trafia do repozytorium):
+
+   ```text
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=
+   DB_NAME=taskboard
+   ```
+
+4. Zainstaluj zależności i uruchom API:
+
+   ```text
+   cd backend
+   npm install
+   npm start
+   ```
+
+5. Sprawdź działanie: `http://localhost:3000/api/health` zwraca `{"ok":true}`.
 
 ## Autor
 
