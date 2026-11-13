@@ -14,17 +14,18 @@ const zadania = [
 
 function policzWykonane(lista) {
   let licznik = 0;
-  for (let i = 0; i <= lista.length; i++) {
-    if (lista[i].status = 'done') {
+  for (let i = 0; i < lista.length; i++) { // POPRAWKA 1: <= wychodzilo poza tablice (lista[5] to undefined, TypeError); powinno byc <
+    if (lista[i].status === 'done') { // POPRAWKA 2: = to przypisanie (warunek zawsze prawdziwy); porownujemy przez ===
       licznik++;
     }
   }
+  return licznik; // POPRAWKA 3: funkcja nic nie zwracala (undefined, wynik NaN%)
 }
 
 function pokazPodsumowanie() {
-  const wykonane = policzWykonane(zadanie);
+  const wykonane = policzWykonane(zadania); // POPRAWKA 4: literowka w nazwie zmiennej (zadanie zamiast zadania), ReferenceError
   const procent = Math.round((wykonane / zadania.length) * 100);
   document.getElementById('wynik').textContent = `Wykonane: ${wykonane} z ${zadania.length} (${procent}%)`;
 }
 
-document.getElementById('policz').addEventListener('clik', pokazPodsumowanie);
+document.getElementById('policz').addEventListener('click', pokazPodsumowanie); // POPRAWKA 5: literowka w nazwie zdarzenia (clik zamiast click), przycisk nic nie robil
