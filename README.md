@@ -65,6 +65,18 @@ Tabele `boards` i `tasks` nie usuwają rekordów od razu. Usunięcie ustawia nar
    (albo w phpMyAdmin: zakładka Import, plik `database/taskboard.sql`).
 3. Zapytania do ćwiczeń znajdują się w `database/queries.sql`.
 
+### Konta bazy danych
+
+Skrypt `database/konta.sql` (uruchamiany jako `root`: `mysql -u root < database/konta.sql`) tworzy trzy konta:
+
+| Konto | Uprawnienia | Do czego |
+| --- | --- | --- |
+| taskboard_admin | ALL PRIVILEGES na taskboard.* | administracja, trwałe usuwanie zadań, kopie zapasowe |
+| taskboard_app | SELECT, INSERT, UPDATE | konto backendu (bez DELETE, bo usuwamy miękko) |
+| taskboard_readonly | SELECT | podgląd danych i raporty |
+
+Hasła w skrypcie są przykładowe (środowisko szkolne).
+
 ### Kopia zapasowa
 
 Kopia `database/backup/taskboard_backup.sql` powstała poleceniem
@@ -75,8 +87,8 @@ i porównanie liczby rekordów:
 | --- | --- | --- |
 | users | 5 | 5 |
 | boards | 2 | 2 |
-| tasks | 10 | 10 |
-| tasks z isDeleted = 1 | 2 | 2 |
+| tasks | 11 | 11 |
+| tasks z isDeleted = 1 | 3 | 3 |
 
 Liczby są takie same, więc kopia zapasowa odtwarza bazę poprawnie.
 
@@ -84,13 +96,10 @@ Liczby są takie same, więc kopia zapasowa odtwarza bazę poprawnie.
 
 1. Sklonuj repozytorium: `git clone <adres-repozytorium>` i otwórz folder w VS Code.
 2. Uruchom MySQL w XAMPP i odtwórz bazę (sekcja „Baza danych”).
-3. W głównym folderze projektu utwórz plik `.env` (nie trafia do repozytorium):
+3. Utwórz konta bazy (`mysql -u root < database/konta.sql`) i skopiuj wzór konfiguracji do pliku `.env` w głównym folderze projektu (plik `.env` nie trafia do repozytorium):
 
    ```text
-   DB_HOST=localhost
-   DB_USER=root
-   DB_PASSWORD=
-   DB_NAME=taskboard
+   cp .env.example .env
    ```
 
 4. Zainstaluj zależności i uruchom API:
