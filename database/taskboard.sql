@@ -81,3 +81,10 @@ INSERT INTO tasks (title, description, status, priority, deadline, boardId, assi
 UPDATE tasks
    SET isDeleted = 1, deletedAt = NOW(), deletedById = 1
  WHERE id IN (9, 10);
+
+-- Zadanie usuniete miekko ponad 30 dni temu (kandydat do trwalego usuniecia
+-- zapytaniem nr 10 z queries.sql); daty wpisane recznie, a nie NOW()
+INSERT INTO tasks (title, description, status, priority, deadline, boardId, assigneeId,
+                   createdAt, isDeleted, deletedAt, deletedById) VALUES
+  ('Stara funkcja eksportu', 'Usuniete ponad 30 dni temu', 'todo', 'low', NULL, 1, NULL,
+   '2026-09-01 09:00:00', 1, '2026-09-15 10:00:00', 1);

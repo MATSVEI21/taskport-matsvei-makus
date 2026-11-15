@@ -45,7 +45,7 @@ CREATE TABLE `boards` (
 
 LOCK TABLES `boards` WRITE;
 /*!40000 ALTER TABLE `boards` DISABLE KEYS */;
-INSERT INTO `boards` VALUES (1,'Projekt Taskboard','Glowna tablica projektu',1,'2026-11-13 14:31:26',0,NULL,NULL),(2,'Nauka Express','Zadania na zajecia z backendu',2,'2026-11-13 14:31:26',0,NULL,NULL);
+INSERT INTO `boards` VALUES (1,'Projekt Taskboard','Glowna tablica projektu',1,'2026-11-15 20:23:38',0,NULL,NULL),(2,'Nauka Express','Zadania na zajecia z backendu',2,'2026-11-15 20:23:38',0,NULL,NULL);
 /*!40000 ALTER TABLE `boards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +77,7 @@ CREATE TABLE `tasks` (
   CONSTRAINT `fk_tasks_board` FOREIGN KEY (`boardId`) REFERENCES `boards` (`id`),
   CONSTRAINT `fk_tasks_deleter` FOREIGN KEY (`deletedById`) REFERENCES `users` (`id`),
   CONSTRAINT `chk_tasks_title` CHECK (char_length(`title`) between 3 and 100)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (1,'Struktura repozytorium','Foldery i pliki README','done','high','2026-11-06',1,1,'2026-11-13 14:31:26',0,NULL,NULL),(2,'Skrypt bazy danych','Tabele users, boards i tasks','done','high','2026-11-10',1,1,'2026-11-13 14:31:26',0,NULL,NULL),(3,'API tablic','POST, PUT i DELETE dla tablic','in_progress','high','2026-11-14',1,2,'2026-11-13 14:31:26',0,NULL,NULL),(4,'API zadań','Trasy w pliku routes/tasks.js','in_progress','medium','2026-11-14',1,2,'2026-11-13 14:31:26',0,NULL,NULL),(5,'Widok tablicy','Trzy kolumny ze statusami','todo','medium','2026-11-20',1,3,'2026-11-13 14:31:26',0,NULL,NULL),(6,'Raport testów',NULL,'todo','low','2026-11-05',1,NULL,'2026-11-13 14:31:26',0,NULL,NULL),(7,'Hello world Express','Pierwszy serwer na porcie 3000','done','low','2026-11-09',2,4,'2026-11-13 14:31:26',0,NULL,NULL),(8,'Kolekcja Postman','Przypadki 200, 400 i 404','todo','high','2026-11-13',2,5,'2026-11-13 14:31:26',0,NULL,NULL),(9,'Stary pomysł na filtry','Zrezygnowano z tej funkcji','todo','low',NULL,1,3,'2026-11-13 14:31:26',1,'2026-11-13 14:31:26',1),(10,'Duplikat zadania API','Dodane omyłkowo','in_progress','medium',NULL,2,NULL,'2026-11-13 14:31:26',1,'2026-11-13 14:31:26',1);
+INSERT INTO `tasks` VALUES (1,'Struktura repozytorium','Foldery i pliki README','done','high','2026-11-06',1,1,'2026-11-15 20:23:38',0,NULL,NULL),(2,'Skrypt bazy danych','Tabele users, boards i tasks','done','high','2026-11-10',1,1,'2026-11-15 20:23:38',0,NULL,NULL),(3,'API tablic','POST, PUT i DELETE dla tablic','in_progress','high','2026-11-14',1,2,'2026-11-15 20:23:38',0,NULL,NULL),(4,'API zadań','Trasy w pliku routes/tasks.js','in_progress','medium','2026-11-14',1,2,'2026-11-15 20:23:38',0,NULL,NULL),(5,'Widok tablicy','Trzy kolumny ze statusami','todo','medium','2026-11-20',1,3,'2026-11-15 20:23:38',0,NULL,NULL),(6,'Raport testów',NULL,'todo','low','2026-11-05',1,NULL,'2026-11-15 20:23:38',0,NULL,NULL),(7,'Hello world Express','Pierwszy serwer na porcie 3000','done','low','2026-11-09',2,4,'2026-11-15 20:23:38',0,NULL,NULL),(8,'Kolekcja Postman','Przypadki 200, 400 i 404','todo','high','2026-11-13',2,5,'2026-11-15 20:23:38',0,NULL,NULL),(9,'Stary pomysł na filtry','Zrezygnowano z tej funkcji','todo','low',NULL,1,3,'2026-11-15 20:23:38',1,'2026-11-15 20:23:38',1),(10,'Duplikat zadania API','Dodane omyłkowo','in_progress','medium',NULL,2,NULL,'2026-11-15 20:23:38',1,'2026-11-15 20:23:38',1),(11,'Stara funkcja eksportu','Usuniete ponad 30 dni temu','todo','low',NULL,1,NULL,'2026-09-01 09:00:00',1,'2026-09-15 10:00:00',1);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'anna.nowak','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Anna','Nowak','2026-11-13 14:31:26'),(2,'jan.kowalski','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Jan','Kowalski','2026-11-13 14:31:26'),(3,'ola.wisniewska','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Ola','Wiśniewska','2026-11-13 14:31:26'),(4,'piotr.zielinski','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Piotr','Zieliński','2026-11-13 14:31:26'),(5,'kasia.lewandowska','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Kasia','Lewandowska','2026-11-13 14:31:26');
+INSERT INTO `users` VALUES (1,'anna.nowak','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Anna','Nowak','2026-11-15 20:23:38'),(2,'jan.kowalski','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Jan','Kowalski','2026-11-15 20:23:38'),(3,'ola.wisniewska','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Ola','Wiśniewska','2026-11-15 20:23:38'),(4,'piotr.zielinski','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Piotr','Zieliński','2026-11-15 20:23:38'),(5,'kasia.lewandowska','$2a$10$qCgFwKm4Qiu60z3cTqCvz.DZUvPNVnkJQjMagc4wtx24LiYjsF./y','Kasia','Lewandowska','2026-11-15 20:23:38');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -129,4 +129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-13 14:31:26
+-- Dump completed on 2026-11-15 20:23:39
