@@ -2,8 +2,16 @@
 
 ## Opis aplikacji
 
-Taskboard to aplikacja do zarządzania zadaniami.
-Umożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich realizacji.
+Taskboard to aplikacja do zarządzania zadaniami zespołu (wersja 1.0). Umożliwia organizowanie pracy w tablicach, tworzenie zadań, filtrowanie ich i śledzenie postępów w trzech kolumnach: „Do zrobienia”, „W trakcie” i „Gotowe”.
+
+### Funkcje
+
+- Rejestracja i logowanie (hasła zapisywane jako hash bcrypt, sesja w ciasteczku); bez logowania widoki przenoszą na stronę logowania.
+- Tablice: lista kart, dodawanie, edycja w oknie i usuwanie z potwierdzeniem (usunięcie miękkie).
+- Zadania: dodawanie, edycja, szczegóły, zmiana statusu przyciskiem i usuwanie z potwierdzeniem.
+- Filtry zadań po priorytecie, osobie i fragmencie tytułu, łączone ze sobą.
+- Walidacja formularzy w przeglądarce i w API; komunikaty błędów z API.
+- Widok na telefonie: kolumny jedna pod drugą.
 
 ## Technologie
 
@@ -17,9 +25,9 @@ Umożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich 
 - **Node.js i markdownlint-cli2** – lintowanie plików Markdown w workflow.
 - **Markdown** – język dokumentacji projektu (README, opisy zadań, opis danych).
 - **Mermaid** – diagramy ERD osadzone w dokumentacji i renderowane przez GitHub.
-- **Frontend** – warstwa interfejsu użytkownika (tablice, zadania, filtry);
-  konkretna technologia zostanie wybrana w kolejnych zadaniach.
-- **Node.js i Express** – środowisko i framework backendu; REST API dla użytkowników, tablic i zadań (`backend/`).
+- **HTML, CSS i JavaScript (bez frameworka)** – trzy widoki frontendu (`frontend/`): logowanie, lista tablic i widok tablicy.
+- **Bootstrap 5.3** – siatka, formularze, okna modalne i walidacja (`is-invalid`); własne kolory i style w `frontend/css/style.css`.
+- **Node.js i Express** – środowisko i framework backendu; REST API (`backend/`), obsługa sesji (`express-session`) i haseł (`bcryptjs`).
 - **MySQL (XAMPP, MariaDB)** – relacyjna baza danych `taskboard` z tabelami `users`, `boards` i `tasks`; sterownik `mysql2`.
 - **Postman** – ręczne testowanie tras API; kolekcja w `docs/postman/`.
 
@@ -27,11 +35,11 @@ Umożliwia organizowanie pracy, tworzenie zadań oraz śledzenie postępów ich 
 
 | Folder | Opis |
 | --- | --- |
-| frontend/ | Interfejs użytkownika |
-| backend/ | Logika aplikacji i API |
-| database/ | Struktura bazy danych |
-| docs/ | Dokumentacja projektu |
-| docs/zadania/ | Dokumentacja zadań |
+| frontend/ | Widoki `login.html`, `boards.html`, `board.html`, skrypty w `js/` i style w `css/` |
+| backend/ | API Express: trasy w `routes/`, ochrona tras w `middleware/` |
+| database/ | Skrypty SQL: baza i dane testowe, konta, zapytania, kopia zapasowa |
+| docs/ | Dokumentacja: `api.md`, `testy.md`, kolekcja Postman, opisy zadań |
+| materialy/ | Materiały z zajęć: makieta, diagram ERD, ćwiczenie z debuggerem |
 
 ## Baza danych
 
@@ -94,15 +102,29 @@ Liczby są takie same, więc kopia zapasowa odtwarza bazę poprawnie.
 
 ## Uruchomienie
 
-1. Sklonuj repozytorium: `git clone <adres-repozytorium>` i otwórz folder w VS Code.
-2. Uruchom MySQL w XAMPP i odtwórz bazę (sekcja „Baza danych”).
-3. Utwórz konta bazy (`mysql -u root < database/konta.sql`) i skopiuj wzór konfiguracji do pliku `.env` w głównym folderze projektu (plik `.env` nie trafia do repozytorium):
+Wymagania: Git, Node.js 20 lub nowszy, MySQL lub MariaDB (np. XAMPP).
+
+1. Sklonuj repozytorium i wejdź do folderu projektu:
+
+   ```text
+   git clone https://github.com/MATSVEI21/taskport-matsvei-makus.git
+   cd taskport-matsvei-makus
+   ```
+
+2. Uruchom MySQL w XAMPP i odtwórz bazę wraz z danymi testowymi oraz kontami (sekcja „Baza danych”):
+
+   ```text
+   mysql -u root < database/taskboard.sql
+   mysql -u root < database/konta.sql
+   ```
+
+3. Skopiuj wzór konfiguracji do pliku `.env` w głównym folderze projektu i wpisz własny `SESSION_SECRET` (plik `.env` nie trafia do repozytorium):
 
    ```text
    cp .env.example .env
    ```
 
-4. Zainstaluj zależności i uruchom API:
+4. Zainstaluj zależności i uruchom serwer (API i strony działają pod jednym adresem):
 
    ```text
    cd backend
@@ -110,7 +132,21 @@ Liczby są takie same, więc kopia zapasowa odtwarza bazę poprawnie.
    npm start
    ```
 
-5. Sprawdź działanie: `http://localhost:3000/api/health` zwraca `{"ok":true}`.
+5. Otwórz `http://localhost:3000` (strona przenosi na logowanie). Sprawdzenie API: `http://localhost:3000/api/health` zwraca `{"ok":true}`.
+
+Użytkownicy z danych testowych (`anna.nowak`, `jan.kowalski`, …) mają wspólny hash hasła z pliku `users.csv`, którego hasło nie jest podane w repozytorium. Aby się zalogować, załóż własne konto w zakładce „Rejestracja”.
+
+## Dokumentacja i testy
+
+- [Dokumentacja API](docs/api.md) – tabela tras, filtry, walidacja i przykłady JSON.
+- [Raport testów](docs/testy.md) – 21 przypadków testowych z wynikami, Lighthouse i W3C.
+- Kolekcja Postman: `docs/postman/taskboard.postman_collection.json`.
+- Opisy zadań: `docs/zadania/` (TB-1, TB-2, TB-3).
+
+### Wyniki jakości
+
+- Lighthouse (wydajność, dostępność, najlepsze praktyki, SEO): co najmniej 92 na wszystkich trzech stronach, w wersji mobilnej i na komputer.
+- Walidator W3C: 0 błędów w `login.html`, `boards.html` i `board.html`.
 
 ## Autor
 
