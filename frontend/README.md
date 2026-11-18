@@ -1,5 +1,5 @@
-﻿# Frontend
+# Frontend
 
 Frontend odpowiada za interfejs użytkownika aplikacji Taskboard.
-Znajdą się tutaj widoki, komponenty oraz style aplikacji.
-Użytkownik będzie korzystać z aplikacji za pośrednictwem tej części systemu.
+Zawiera widoki login.html, oards.html i oard.html, skrypty w js/ oraz style w css/.
+Strony są serwowane przez backend pod adresem http://localhost:3000.
