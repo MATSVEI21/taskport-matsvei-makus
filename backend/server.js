@@ -21,6 +21,8 @@ app.use('/api/users', requireAuth, require('./routes/users'));
 app.use('/api/boards', requireAuth, require('./routes/boards'));
 app.use('/api', requireAuth, require('./routes/tasks'));
 
+// strona glowna przenosi na liste tablic (bez logowania - dalej na logowanie)
+app.get('/', (req, res) => res.redirect('/boards.html'));
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 app.use((err, req, res, next) => {
