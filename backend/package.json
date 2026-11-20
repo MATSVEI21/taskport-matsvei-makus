@@ -2,17 +2,19 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend odpowiada za logikę biznesową aplikacji Taskboard. Będzie obsługiwać żądania użytkowników oraz komunikację z bazą danych. Znajdą się tutaj endpointy API i logika przetwarzania danych.",
- "main": "server.js",
+  "main": "server.js",
   "scripts": {
-  "start": "node server.js"
-},
+    "start": "node server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "dotenv": "^18.0.10",
     "express": "^5.3.0",
+    "express-session": "^1.19.0",
     "mysql2": "^3.24.6"
   }
 }

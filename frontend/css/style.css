@@ -1,0 +1,149 @@
+/* Własne kolory i style – uzupełniają Bootstrapa (wzór: materialy/makieta/) */
+:root {
+  --tb-primary: #0f766e;
+  --tb-primary-dark: #0b5e58;
+  --tb-bg: #f3f5f7;
+  --tb-nav: #111d2b;
+  --tb-muted: #56616c;
+}
+
+body {
+  background-color: var(--tb-bg);
+  color: #17212b;
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Przyciski w kolorze projektu */
+.btn-primary {
+  --bs-btn-bg: var(--tb-primary);
+  --bs-btn-border-color: var(--tb-primary);
+  --bs-btn-hover-bg: var(--tb-primary-dark);
+  --bs-btn-hover-border-color: var(--tb-primary-dark);
+  --bs-btn-active-bg: var(--tb-primary-dark);
+  --bs-btn-active-border-color: var(--tb-primary-dark);
+  --bs-btn-disabled-bg: var(--tb-primary);
+  --bs-btn-disabled-border-color: var(--tb-primary);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--tb-primary);
+  --bs-btn-border-color: var(--tb-primary);
+  --bs-btn-hover-bg: var(--tb-primary);
+  --bs-btn-hover-border-color: var(--tb-primary);
+  --bs-btn-active-bg: var(--tb-primary-dark);
+  --bs-btn-active-border-color: var(--tb-primary-dark);
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #b02a37;
+  --bs-btn-border-color: #b02a37;
+}
+
+a {
+  color: var(--tb-primary);
+}
+
+.text-muted-tb {
+  color: var(--tb-muted);
+}
+
+/* Nagłówek z imieniem i przyciskiem Wyloguj */
+.tb-navbar {
+  background-color: var(--tb-nav);
+}
+
+.tb-navbar .navbar-brand {
+  color: #fff;
+  font-weight: 700;
+}
+
+.tb-user {
+  color: #cdd5dd;
+  font-size: 0.9rem;
+}
+
+.tb-user strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Strona logowania */
+.tb-login {
+  max-width: 28rem;
+}
+
+.tb-login h1 {
+  font-weight: 700;
+  color: #17212b;
+}
+
+.tb-login .nav-link {
+  color: var(--tb-primary);
+}
+
+.tb-login .nav-link.active {
+  color: #17212b;
+}
+
+/* Karty tablic */
+.tb-board-card {
+  border: 0;
+  border-top: 5px solid var(--tb-primary);
+}
+
+/* Kolumny tablicy */
+.tb-column {
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  min-height: 8rem;
+}
+
+.tb-col-todo { background-color: #e8eef6; }
+.tb-col-in_progress { background-color: #fff3dc; }
+.tb-col-done { background-color: #e4f3ea; }
+
+.tb-column .badge-count {
+  background-color: #fff;
+  color: #17212b;
+}
+
+/* Karta zadania: lewy pasek w kolorze priorytetu */
+.tb-task {
+  border: 0;
+  border-left: 5px solid #8a94a0;
+}
+
+.tb-task.priority-high { border-left-color: #b3261e; }
+.tb-task.priority-medium { border-left-color: #c77d12; }
+.tb-task.priority-low { border-left-color: #8a94a0; }
+
+.tb-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.tb-badge.priority-high { background-color: #fcdcdc; color: #8b1a1a; }
+.tb-badge.priority-medium { background-color: #fdecb5; color: #5e3f00; }
+.tb-badge.priority-low { background-color: #e1e5ea; color: #343c44; }
+
+.tb-overdue {
+  color: #b3261e;
+  font-weight: 700;
+}
+
+.tb-empty {
+  color: var(--tb-muted);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+/* Telefon: kolumny jedna pod drugą, przyciski zadania mogą się zawijać */
+@media (max-width: 575.98px) {
+  .tb-user-label {
+    display: none;
+  }
+
+  .tb-task .btn {
+    flex: 1 1 auto;
+  }
+}
